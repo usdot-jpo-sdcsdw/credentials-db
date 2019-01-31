@@ -7,9 +7,6 @@ ENV USERNAME_COLUMN_TYPE=char(128)
 ENV PASSWORD_COLUMN_NAME=password
 ENV PASSWORD_COLUMN_TYPE=char(64)
 
-COPY credentials-db-docker-entrypoint.sh /credentials-db-docker-entrypoint.sh
-
-RUN chmod +x /credentials-db-docker-entrypoint.sh
-
-ENTRYPOINT ["/credentials-db-docker-entrypoint.sh"]
-CMD ["mysqld"]
+RUN mv /entrypoint.sh /mysql-docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
