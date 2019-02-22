@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash -xe
+
 ADMINS_SCRIPT=/docker-entrypoint-initdb.d/init-admins.sql
 USERS_SCRIPT=/docker-entrypoint-initdb.d/init-users.sql
 
@@ -19,4 +20,4 @@ echo '  `'$PASSWORD_COLUMN_NAME'` '$PASSWORD_COLUMN_TYPE' DEFAULT NULL,' >> $USE
 echo '  PRIMARY KEY (`'$USERNAME_COLUMN_NAME'`)' >> $USERS_SCRIPT
 echo ');' >> $USERS_SCRIPT
 
-docker-entrypoint.sh $@
+/mysql-docker-entrypoint.sh $@
